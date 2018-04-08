@@ -1,5 +1,6 @@
 #!/bin/bash
 #system process discovery script
+
 top -b -n 1 > /tmp/.top.txt && chown zabbix. /tmp/.top.txt
 proc_array=(`tail -n +8 /tmp/.top.txt | awk '{a[$NF]+=$10}END{for(k in a)print a[k],k}'|sort -gr|head -10|cut -d" " -f2`)
 length=${#proc_array[@]}
